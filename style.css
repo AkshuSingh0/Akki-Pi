@@ -1,0 +1,137 @@
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f5f8fa;
+  color: #333;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(45deg, #3b9dd6, #b9358c, #4cb050, #ffd93b);
+  padding: 10px 20px;
+  color: white;
+}
+
+header img {
+  height: 70px;
+  margin-right: 15px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-left h1 {
+  margin: 0;
+  font-size: 26px;
+}
+
+.header-left p {
+  margin: 3px 0 0 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.header-right p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.gallery {
+  padding: 20px;
+  background: #e1f5fe;
+  text-align: center;
+}
+
+.gallery h2 {
+  color: #007ac1;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.marquee {
+  display: flex;
+  overflow-x: auto;
+  animation: scroll 20s linear infinite;
+}
+
+.marquee img {
+  height: 160px;
+  margin-right: 10px;
+  border-radius: 10px;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+section {
+  padding: 25px;
+  margin: 20px 10px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #ccc;
+}
+
+section h2 {
+  color: #b9358c;
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+section h3 {
+  color: #007ac1;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+section p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+section img {
+  display: block;
+  max-width: 300px;
+  margin: 10px auto;
+  border-radius: 10px;
+  border: 3px solid #3b9dd6;
+}
+
+footer {
+  background: linear-gradient(45deg, #3b9dd6, #b9358c);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+footer h3 {
+  margin-top: 0;
+  font-size: 22px;
+}
+
+.social {
+  margin-top: 15px;
+}
+
+.social a {
+  display: inline-block;
+  margin: 0 10px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 14px;
+  background: #4cb050;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.social a:hover {
+  background: #007ac1;
+}
