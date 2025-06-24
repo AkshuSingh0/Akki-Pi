@@ -39,6 +39,14 @@ header {
   text-align: right;
 }
 
+.whatsapp-icon {
+  color: #25d366;
+  font-size: 28px;
+  margin-top: 5px;
+  display: block;
+  text-align: right;
+}
+
 section {
   padding: 30px;
 }
@@ -47,6 +55,11 @@ h2 {
   text-align: center;
   color: #d83a7c;
   margin-bottom: 20px;
+}
+
+.guiding-light h2 {
+  color: #FFD700;
+  text-align: center;
 }
 
 h3 {
@@ -64,18 +77,21 @@ h3 {
 .marquee {
   overflow: hidden;
   white-space: nowrap;
+  position: relative;
 }
 
 .marquee-content {
   display: flex;
-  animation: scrollLeft 5s linear infinite;
+  animation: scrollLeft 20s linear infinite;
 }
 
 .marquee-content img {
-  height: 150px;
-  margin-right: 10px;
+  height: 260px;
+  width: 360px;
+  margin-right: 15px;
   border-radius: 8px;
   border: 2px solid #ccc;
+  object-fit: cover;
 }
 
 @keyframes scrollLeft {
@@ -95,7 +111,7 @@ h3 {
 }
 
 .guiding-light img {
-  max-width: 250px;
+  max-width: 350px;
   border-radius: 10px;
   margin: 15px auto;
   display: block;
