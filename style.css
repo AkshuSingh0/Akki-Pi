@@ -54,20 +54,28 @@ header img {
 }
 
 .marquee {
-  display: flex;
-  overflow-x: auto;
-  animation: scroll 20s linear infinite;
+  overflow: hidden;
+  position: relative;
 }
 
-.marquee img {
+.marquee-content {
+  display: flex;
+  animation: scrollLeft 25s linear infinite;
+}
+
+.marquee-content img {
   height: 160px;
   margin-right: 10px;
   border-radius: 10px;
 }
 
-@keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 section {
