@@ -6,6 +6,7 @@ body {
   background: #f0f8ff;
   color: #333;
 }
+
 .top-bar {
   background: #00703c;
   color: #fff;
@@ -26,6 +27,7 @@ body {
 .top-bar a:hover {
   color: #ffcc00;
 }
+
 .wa-icon {
   margin-left: 10px;
   font-size: 20px;
