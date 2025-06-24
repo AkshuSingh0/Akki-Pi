@@ -38,17 +38,22 @@ h2 { text-align: center; color: #d75a00; }
   background: #000;
   color: #fff;
   padding: 20px;
+  overflow: hidden;
 }
+
 .gallery-track {
   display: flex;
+  width: max-content;
   animation: scrollGallery 20s linear infinite;
 }
+
 .gallery-track img {
   height: 350px;
   width: auto;
   margin-right: 12px;
   border-radius: 10px;
 }
+
 @keyframes scrollGallery {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
