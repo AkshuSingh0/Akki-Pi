@@ -44,7 +44,7 @@ h2 { text-align: center; color: #d75a00; }
 .gallery-track {
   display: flex;
   width: max-content;
-  animation: scrollGallery 20s linear infinite;
+  animation: scrollGallery 15s linear infinite;
 }
 
 .gallery-track img {
