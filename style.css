@@ -103,6 +103,8 @@ h2 { text-align: center; color: #d75a00; }
   font-size: 18px;
   font-weight: bold;
 }
-.footer {
-    background-color: #f0f0f0;
+footer {
+  background-color: #e0e0e0; /* Light grey */
+  padding: 20px;
+  text-align: center;
 }
