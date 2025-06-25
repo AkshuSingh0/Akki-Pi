@@ -39,10 +39,9 @@ body {
   align-items: flex-end;
 }
 .wa-img {
-  height: 48px;
-  width: 120px;
-  transform: scale(2.5); /* force scale */
-  transform-origin: top right;
+  height: 72px;
+  width: 200px;
+  object-fit: contain;
   margin-top: 5px;
 }
 .logo-title {
@@ -204,12 +203,6 @@ footer {
 
   .contact-info {
     align-items: flex-end;
-  }
-
-  .wa-img {
-    height: 20px;
-    width: 20px;
-    margin-top: 6px;
   }
 
   .hero-section {
