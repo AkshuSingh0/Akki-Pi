@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  padding: 0;
+  padding: 0 12px;  /* ✅ Adds 12px space on left & right */
   overflow-x: hidden;
   font-family: Arial, sans-serif;
   background: #f0f8ff;
