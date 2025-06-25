@@ -40,6 +40,17 @@ body {
 .logo {
   height: 80px;
 }
+.hero-section {
+  background-image: url("schoolbg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 40px 20px;
+  border-radius: 10px;
+  margin-top: 10px;
+  text-align: center;
+  color: white; /* Make text readable */
+}
 h1 { color: #00703c; }
 h2 { text-align: center; color: #d75a00; }
 .guiding-light h2.guiding-heading {
