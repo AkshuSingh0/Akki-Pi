@@ -41,6 +41,12 @@ body {
   padding-right: 12px;
 }
 
+.wa-wrapper {
+  margin-left: auto;
+  margin-right: -8px; /* Pulls WhatsApp logo very close to right edge */
+  margin-top: 5px;
+}
+
 .wa-line {
   width: 100%;
   display: flex;
