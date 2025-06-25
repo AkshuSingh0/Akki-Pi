@@ -49,10 +49,10 @@ body {
   border-radius: 10px;
   margin-top: 10px;
   text-align: center;
-  color: white;
+  color: black; /* Make all text black */
 }
-h1 { color: #00703c; }
-h2 { text-align: center; color: #d75a00; }
+h1 { color: black; }
+h2 { text-align: center; color: #black; }
 .guiding-light h2.guiding-heading {
   background: linear-gradient(to right, red, yellow);
   -webkit-background-clip: text;
