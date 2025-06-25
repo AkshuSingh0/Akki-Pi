@@ -43,6 +43,7 @@ body {
   width: 400px;
   object-fit: contain;
   margin-top: 5px;
+  align-self: flex-end;
 }
 .logo-title {
   text-align: center;
