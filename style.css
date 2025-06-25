@@ -176,7 +176,28 @@ footer {
   font-size: 15px;
   color: #fff;
 }
+.hero-section {
+  background-image: url('schoolbg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 80px 20px;
+  text-align: center;
+  position: relative;
+}
 
+.hero-logo {
+  height: 100px;
+  margin-bottom: 30px;
+}
+
+.hero-text {
+  background: rgba(255, 255, 255, 0.85); /* light blur background for visibility */
+  padding: 20px;
+  border-radius: 12px;
+  display: inline-block;
+  margin-top: 30px;
+}
 @media (max-width: 768px) {
   .top-bar {
     padding: 10px;
