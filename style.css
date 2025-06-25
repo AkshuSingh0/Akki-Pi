@@ -262,3 +262,12 @@ footer {
     padding: 6px;
   }
 }
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .guiding-light,
+  .mission,
+  .queries {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
