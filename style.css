@@ -51,27 +51,39 @@ body {
 .logo {
   height: 80px;
 }
-.hero-section {
-  background-image: url("schoolbg.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 40px 20px;
-  border-radius: 10px;
-  margin-top: 10px;
-  text-align: center;
-  color: black;
+.hero-logo {
+  display: block;
+  margin: 0 auto;
+  height: 100px; /* medium size */
+  margin-bottom: 20px;
 }
-.hero-section h1,
-.hero-section h2 {
-  color: black !important;
-  background: rgba(255, 255, 255, 0.8);
+
+.hero-text {
+  background: rgba(255, 255, 255, 0.95);
   display: inline-block;
-  padding: 10px 16px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  padding: 18px 28px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: fadeSlideIn 2s ease forwards;
+}
+
+.hero-text h1,
+.hero-text h2 {
+  color: black;
   margin: 10px 0;
+}
+
+/* ✅ Animation keyframes */
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 h1 { color: #00703c; }
 h2 { text-align: center; color: #d75a00; }
