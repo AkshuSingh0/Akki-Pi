@@ -41,7 +41,8 @@ body {
 .wa-img {
   height: 48px;
   width: 120px;
-  object-fit: contain;
+  transform: scale(2.5); /* force scale */
+  transform-origin: top right;
   margin-top: 5px;
 }
 .logo-title {
