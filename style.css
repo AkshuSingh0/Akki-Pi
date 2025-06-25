@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  padding: 0 12px;
+  padding: 0;
   overflow-x: hidden;
   font-family: Arial, sans-serif;
   background: #f0f8ff;
@@ -10,7 +10,7 @@ body {
 .top-bar {
   background: #00703c;
   color: #fff;
-  padding: 10px 20px;
+  padding: 10px 0;
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
@@ -33,35 +33,38 @@ body {
   font-size: 20px;
   text-decoration: none;
 }
+
 .contact-info {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  padding-right: 12px;
 }
+
 .wa-line {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-}
-.contact-info > div:last-child {
   width: 100%;
   display: flex;
   justify-content: flex-end;
 }
 
 .wa-img {
-  height: 72px;
-  width: 200px;
+  height: 60px;
+  width: auto;
+  max-width: 160px;
   object-fit: contain;
   margin-top: 5px;
+  margin-right: -6px; /* Pushes image close to the screen edge */
 }
+
 .logo-title {
   text-align: center;
   padding: 10px;
 }
+
 .logo {
   height: 80px;
 }
+
 .hero-section {
   background-image: url('schoolbg.jpg');
   background-size: cover;
@@ -75,12 +78,12 @@ body {
 .hero-logo {
   display: block;
   margin: 0 auto;
-  height: 100px; /* medium size */
+  height: 100px;
   margin-bottom: 30px;
 }
 
 .hero-text {
-  background: rgba(255, 255, 255, 0.85); /* light blur background for visibility */
+  background: rgba(255, 255, 255, 0.85);
   padding: 20px;
   border-radius: 12px;
   display: inline-block;
@@ -110,13 +113,13 @@ body {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
+
 .hero-text h1,
 .hero-text h2 {
   color: black;
   margin: 10px 0;
 }
 
-/* ✅ Animation keyframes */
 @keyframes fadeSlideIn {
   0% {
     opacity: 0;
@@ -127,14 +130,23 @@ body {
     transform: translateY(0);
   }
 }
-h1 { color: #00703c; }
-h2 { text-align: center; color: #d75a00; }
+
+h1 {
+  color: #00703c;
+}
+
+h2 {
+  text-align: center;
+  color: #d75a00;
+}
+
 .guiding-light h2.guiding-heading {
   background: linear-gradient(to right, red, yellow);
   -webkit-background-clip: text;
   color: transparent;
   font-size: 32px;
 }
+
 .gallery-section {
   background: #000;
   color: #fff;
@@ -159,29 +171,35 @@ h2 { text-align: center; color: #d75a00; }
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+
 .principal-image {
   display: block;
   margin: 20px auto;
   height: 340px;
   border-radius: 15px;
 }
+
 .queries h2 {
   color: red;
   text-align: center;
 }
+
 .social-media {
   text-align: center;
   padding: 15px;
 }
+
 .social-media img {
   height: 40px;
   margin: 0 10px;
 }
+
 .footer-logo {
   display: block;
   margin: 20px auto;
   height: 70px;
 }
+
 .admission-badge {
   background: #ff4500;
   color: #fff;
@@ -190,8 +208,9 @@ h2 { text-align: center; color: #d75a00; }
   font-size: 18px;
   font-weight: bold;
 }
+
 footer {
-  background: linear-gradient(135deg, #ffcc70, #ff8177, #ff4e50, #f9d423); /* vibrant warm gradient */
+  background: linear-gradient(135deg, #ffcc70, #ff8177, #ff4e50, #f9d423);
   padding: 30px 12px 20px;
   margin-top: 30px;
   text-align: center;
@@ -214,6 +233,7 @@ footer {
 
   .contact-info {
     align-items: flex-end;
+    padding-right: 10px;
   }
 
   .hero-section {
