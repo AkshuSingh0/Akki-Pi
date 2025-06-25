@@ -10,10 +10,10 @@ body {
 .top-bar {
   background: #00703c;
   color: #fff;
-  padding: 5px 15px;
+  padding: 10px 20px;
   display: flex;
   justify-content: flex-end;
-  align-items: center;
+  align-items: flex-start;
   font-size: 16px;
 }
 
@@ -32,6 +32,15 @@ body {
   margin-left: 10px;
   font-size: 20px;
   text-decoration: none;
+}
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.wa-img {
+  height: 20px;
+  margin-top: 5px;
 }
 .logo-title {
   text-align: center;
