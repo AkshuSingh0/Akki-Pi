@@ -39,8 +39,8 @@ body {
   align-items: flex-end;
 }
 .wa-img {
-  height: 34px;
-  width: 34px;
+  height: 42px;
+  width: 42px;
   object-fit: contain;
   margin-top: 5px;
 }
