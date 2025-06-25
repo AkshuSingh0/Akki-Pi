@@ -65,11 +65,13 @@ body {
 .hero-section h1,
 .hero-section h2 {
   color: black !important;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.8);
   display: inline-block;
-  padding: 6px 12px;
-  border-radius: 8px;
+  padding: 10px 16px;
+  border-radius: 10px;
   border: 1px solid #ccc;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  margin: 10px 0;
 }
 h1 { color: #00703c; }
 h2 { text-align: center; color: #d75a00; }
