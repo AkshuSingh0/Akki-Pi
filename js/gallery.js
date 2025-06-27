@@ -1,53 +1,54 @@
-const track = document.querySelector(".gallery-track");
-let isDragging = false;
-let startX;
-let scrollLeft;
+const track = document.querySelector('.gallery-track');
+const leftBtn = document.querySelector('.gallery-left');
+const rightBtn = document.querySelector('.gallery-right');
 
-let autoScroll = setInterval(() => {
-  track.scrollLeft += 1;
-}, 20);
+let autoScrollInterval;
+let isPaused = false;
+let idleTimer;
 
-track.addEventListener("mousedown", (e) => {
-  clearInterval(autoScroll);
-  isDragging = true;
-  startX = e.pageX - track.offsetLeft;
-  scrollLeft = track.scrollLeft;
+function scrollGallery() {
+  track.scrollBy({ left: 2, behavior: 'smooth' });
+}
+
+function startAutoScroll() {
+  autoScrollInterval = setInterval(scrollGallery, 20);
+  isPaused = false;
+  hideControls();
+}
+
+function stopAutoScroll() {
+  clearInterval(autoScrollInterval);
+  isPaused = true;
+  showControls();
+  resetIdleTimer();
+}
+
+function resetIdleTimer() {
+  clearTimeout(idleTimer);
+  idleTimer = setTimeout(() => {
+    startAutoScroll();
+  }, 5000); // resume after 5 sec
+}
+
+function showControls() {
+  leftBtn.style.display = 'block';
+  rightBtn.style.display = 'block';
+}
+
+function hideControls() {
+  leftBtn.style.display = 'none';
+  rightBtn.style.display = 'none';
+}
+
+track.addEventListener('click', stopAutoScroll);
+leftBtn.addEventListener('click', () => {
+  track.scrollBy({ left: -350, behavior: 'smooth' });
+  resetIdleTimer();
+});
+rightBtn.addEventListener('click', () => {
+  track.scrollBy({ left: 350, behavior: 'smooth' });
+  resetIdleTimer();
 });
 
-track.addEventListener("mouseleave", () => isDragging = false);
-
-track.addEventListener("mouseup", () => {
-  isDragging = false;
-  autoScroll = setInterval(() => {
-    track.scrollLeft += 1;
-  }, 20);
-});
-
-track.addEventListener("mousemove", (e) => {
-  if (!isDragging) return;
-  e.preventDefault();
-  const x = e.pageX - track.offsetLeft;
-  const walk = (x - startX) * 2;
-  track.scrollLeft = scrollLeft - walk;
-});
-
-track.addEventListener("touchstart", (e) => {
-  clearInterval(autoScroll);
-  isDragging = true;
-  startX = e.touches[0].pageX - track.offsetLeft;
-  scrollLeft = track.scrollLeft;
-});
-
-track.addEventListener("touchend", () => {
-  isDragging = false;
-  autoScroll = setInterval(() => {
-    track.scrollLeft += 1;
-  }, 20);
-});
-
-track.addEventListener("touchmove", (e) => {
-  if (!isDragging) return;
-  const x = e.touches[0].pageX - track.offsetLeft;
-  const walk = (x - startX) * 2;
-  track.scrollLeft = scrollLeft - walk;
-});
+// Start scrolling on load
+startAutoScroll();
