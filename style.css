@@ -233,7 +233,6 @@ h2 {
   background: rgba(255, 255, 255, 0.9);
 }
 
-/* ✅ Responsive fixed heights */
 @media (max-width: 768px) {
   .gallery-container {
     max-height: 480px;
@@ -242,7 +241,11 @@ h2 {
   .gallery-track img {
     height: 420px;
     max-width: 100%;
-    object-fit: fill; /* ✅ Forces all images to stretch and fill space */
+    width: 100%;
+    object-fit: cover;              /* ✅ Uniform appearance */
+    object-position: center center; /* ✅ Keep main subject centered */
+    aspect-ratio: 3 / 2;            /* ✅ Force image to appear wide */
+    border-radius: 10px;
   }
 }
 
