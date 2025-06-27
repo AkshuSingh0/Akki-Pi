@@ -1,3 +1,5 @@
+// js/gallery.js
+
 const track = document.querySelector('.gallery-track');
 const leftBtn = document.querySelector('.gallery-left');
 const rightBtn = document.querySelector('.gallery-right');
@@ -7,7 +9,9 @@ let isPaused = false;
 let idleTimer;
 
 function scrollGallery() {
-  track.scrollBy({ left: 2, behavior: 'smooth' });
+  if (!isPaused) {
+    track.scrollBy({ left: 2, behavior: 'smooth' });
+  }
 }
 
 function startAutoScroll() {
@@ -26,8 +30,9 @@ function stopAutoScroll() {
 function resetIdleTimer() {
   clearTimeout(idleTimer);
   idleTimer = setTimeout(() => {
+    isPaused = false;
     startAutoScroll();
-  }, 5000); // resume after 5 sec
+  }, 5000);
 }
 
 function showControls() {
@@ -40,15 +45,16 @@ function hideControls() {
   rightBtn.style.display = 'none';
 }
 
+// CLICK EVENTS
 track.addEventListener('click', stopAutoScroll);
 leftBtn.addEventListener('click', () => {
   track.scrollBy({ left: -350, behavior: 'smooth' });
-  resetIdleTimer();
+  stopAutoScroll();
 });
 rightBtn.addEventListener('click', () => {
   track.scrollBy({ left: 350, behavior: 'smooth' });
-  resetIdleTimer();
+  stopAutoScroll();
 });
 
-// Start scrolling on load
+// START ON LOAD
 startAutoScroll();
