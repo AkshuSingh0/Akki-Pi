@@ -160,6 +160,10 @@ h2 {
   overflow: hidden;
 }
 
+.gallery-container {
+  position: relative;  /* ✅ Required to anchor left/right buttons */
+}
+
 .gallery-track {
   display: flex;
   width: max-content;
