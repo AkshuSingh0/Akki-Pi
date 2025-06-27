@@ -236,11 +236,11 @@ h2 {
 /* ✅ Responsive fixed heights */
 @media (max-width: 768px) {
   .gallery-container {
-    max-height: 240px;
+    max-height: 320px;
   }
 
   .gallery-track img {
-    height: 200px;
+    height: 280px;
   }
 }
 
