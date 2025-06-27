@@ -7,9 +7,9 @@ let isPaused = false;
 let autoScrollInterval;
 let idleTimer;
 
-// Duplicate content for infinite scroll
+// Duplicate content to create looping illusion
 function duplicateContent() {
-  const images = Array.from(track.querySelectorAll('img'));
+  const images = [...track.querySelectorAll('img')];
   images.forEach(img => {
     const clone = img.cloneNode(true);
     track.appendChild(clone);
@@ -18,8 +18,8 @@ function duplicateContent() {
 
 function scrollGallery() {
   if (!isPaused) {
-    scrollAmount += 2;
-    track.scrollLeft += 2;
+    scrollAmount += 1;
+    track.scrollLeft += 1;
 
     if (scrollAmount >= track.scrollWidth / 2) {
       track.scrollLeft = 0;
@@ -45,9 +45,8 @@ function stopAutoScroll() {
 function resetIdleTimer() {
   clearTimeout(idleTimer);
   idleTimer = setTimeout(() => {
-    isPaused = false;
     startAutoScroll();
-  }, 3000);
+  }, 3000); // Resume auto-scroll after 3 seconds
 }
 
 function showControls() {
@@ -60,19 +59,17 @@ function hideControls() {
   rightBtn.style.display = 'none';
 }
 
-// Event Listeners
+// Event listeners
 track.addEventListener('click', stopAutoScroll);
-
 leftBtn.addEventListener('click', () => {
   track.scrollBy({ left: -350, behavior: 'smooth' });
   stopAutoScroll();
 });
-
 rightBtn.addEventListener('click', () => {
   track.scrollBy({ left: 350, behavior: 'smooth' });
   stopAutoScroll();
 });
 
-// Start everything
+// ✅ Initialize
 duplicateContent();
 startAutoScroll();
