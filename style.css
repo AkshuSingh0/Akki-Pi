@@ -156,14 +156,19 @@ h2 {
 .gallery-section {
   background: #000;
   color: #fff;
-  padding: 20px;
+  padding: 20px 0;
   overflow: hidden;
-  position: relative; /* ✅ ensure buttons don’t escape */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .gallery-container {
   position: relative;
   overflow: hidden;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 .gallery-track {
