@@ -16,6 +16,7 @@ function duplicateContent() {
   });
 }
 
+// Auto-scroll function
 function scrollGallery() {
   if (!isPaused) {
     scrollAmount += 1;
@@ -28,6 +29,7 @@ function scrollGallery() {
   }
 }
 
+// Start auto-scroll
 function startAutoScroll() {
   clearInterval(autoScrollInterval);
   autoScrollInterval = setInterval(scrollGallery, 20);
@@ -35,6 +37,7 @@ function startAutoScroll() {
   hideControls();
 }
 
+// Stop auto-scroll
 function stopAutoScroll() {
   clearInterval(autoScrollInterval);
   isPaused = true;
@@ -42,13 +45,15 @@ function stopAutoScroll() {
   resetIdleTimer();
 }
 
+// Wait 3 seconds, then restart
 function resetIdleTimer() {
   clearTimeout(idleTimer);
   idleTimer = setTimeout(() => {
     startAutoScroll();
-  }, 3000); // Resume auto-scroll after 3 seconds
+  }, 3000); // 3 seconds
 }
 
+// Show/Hide buttons
 function showControls() {
   leftBtn.style.display = 'block';
   rightBtn.style.display = 'block';
@@ -70,6 +75,8 @@ rightBtn.addEventListener('click', () => {
   stopAutoScroll();
 });
 
-// ✅ Initialize
+// ✅ Initialize on load
 duplicateContent();
-startAutoScroll();
+window.addEventListener('load', () => {
+  startAutoScroll();
+});
