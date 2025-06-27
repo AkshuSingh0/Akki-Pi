@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  padding: 0 12px;  /* ✅ Adds 12px space on left & right */
+  padding: 0 12px;
   overflow-x: hidden;
   font-family: Arial, sans-serif;
   background: #f0f8ff;
@@ -43,7 +43,7 @@ body {
 
 .wa-wrapper {
   margin-left: auto;
-  margin-right: -8px; /* Pulls WhatsApp logo very close to right edge */
+  margin-right: -8px;
   margin-top: 5px;
 }
 
@@ -59,7 +59,7 @@ body {
   max-width: 160px;
   object-fit: contain;
   margin-top: 5px;
-  margin-right: -6px; /* Pushes image close to the screen edge */
+  margin-right: -6px;
 }
 
 .logo-title {
@@ -158,17 +158,20 @@ h2 {
   color: #fff;
   padding: 20px;
   overflow: hidden;
+  position: relative; /* ✅ ensure buttons don’t escape */
 }
 
 .gallery-container {
-  position: relative;  /* ✅ Required to anchor left/right buttons */
+  position: relative;
+  overflow: hidden;
 }
 
 .gallery-track {
   display: flex;
-  width: max-content;
   overflow-x: auto;
   scroll-behavior: smooth;
+  width: 100%;
+  padding: 10px 0;
 }
 
 .gallery-track img {
@@ -176,33 +179,39 @@ h2 {
   width: auto;
   margin-right: 12px;
   border-radius: 10px;
+  flex-shrink: 0;
 }
 
 .gallery-controls {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
+  pointer-events: none;
 }
 
 .gallery-left,
 .gallery-right {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   background: rgba(255,255,255,0.7);
   border: none;
   font-size: 40px;
   cursor: pointer;
   padding: 10px;
-  z-index: 5;
-  display: none;
   border-radius: 50%;
+  display: none;
+  pointer-events: all;
 }
 
 .gallery-left {
-  left: 10px;
+  margin-left: 10px;
 }
 
 .gallery-right {
-  right: 10px;
+  margin-right: 10px;
 }
 
 .gallery-left:hover,
