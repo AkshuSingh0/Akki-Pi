@@ -179,6 +179,8 @@ h2 {
   width: 100%;
   padding: 10px 0;
   white-space: nowrap;
+  -webkit-overflow-scrolling: touch; /* ✅ Enables iOS momentum scrolling */
+  touch-action: pan-x;                /* ✅ Helps detect touch gestures */
 }
 
 .gallery-track::-webkit-scrollbar {
