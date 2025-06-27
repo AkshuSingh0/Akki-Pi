@@ -7,15 +7,13 @@ let isPaused = false;
 let idleTimer = null;
 let animId = null;
 
-// Clone images twice to allow smooth infinite loop
+// Clone images twice for infinite scroll effect
 function duplicateImages() {
   const imgs = Array.from(track.children);
-  for (let i = 0; i < 2; i++) {
-    imgs.forEach(img => track.appendChild(img.cloneNode(true)));
-  }
+  for (let i = 0; i < 2; i++) imgs.forEach(img => track.appendChild(img.cloneNode(true)));
 }
 
-// Loop scroll using requestAnimationFrame
+// Continuous looping scroll using requestAnimationFrame
 function loopScroll() {
   if (!isPaused) {
     track.scrollLeft += scrollSpeed;
@@ -27,14 +25,14 @@ function loopScroll() {
   animId = requestAnimationFrame(loopScroll);
 }
 
-// Pause scroll, resume after 3 seconds
+// Pause on interaction and resume after 3 seconds
 function pauseAutoScroll() {
   isPaused = true;
   clearTimeout(idleTimer);
   idleTimer = setTimeout(() => { isPaused = false; }, 3000);
 }
 
-// Button interactions
+// Button handlers
 leftBtn.addEventListener("click", () => {
   pauseAutoScroll();
   track.scrollBy({ left: -300, behavior: "smooth" });
@@ -44,12 +42,20 @@ rightBtn.addEventListener("click", () => {
   track.scrollBy({ left: 300, behavior: "smooth" });
 });
 
-// Capture touch/mouse events for pause
+// Pause on user touch/mouse down
 ["touchstart", "pointerdown", "mousedown"].forEach(evt => {
   track.addEventListener(evt, pauseAutoScroll, { passive: true });
 });
 
-// Initialize on page load
+// Ensure autoplay on iOS with visibility recovery
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
+    cancelAnimationFrame(animId);
+    loopScroll();
+  }
+});
+
+// Initialize gallery
 window.addEventListener("load", () => {
   duplicateImages();
   const third = track.scrollWidth / 3;
