@@ -1,34 +1,42 @@
-const track = document.querySelector('.gallery-track');
-const leftBtn = document.querySelector('.gallery-left');
-const rightBtn = document.querySelector('.gallery-right');
+const track = document.querySelector(".gallery-track");
+const leftBtn = document.querySelector(".gallery-left");
+const rightBtn = document.querySelector(".gallery-right");
 
-let scrollSpeed = 1.5;
+let scrollAmount = 0;
 let isPaused = false;
 let idleTimer = null;
-let animationFrame;
+let autoScrollInterval;
 
-// Duplicate gallery images for seamless looping
+// Clone the entire gallery twice for looping
 function duplicateImages() {
   const images = Array.from(track.children);
   for (let i = 0; i < 2; i++) {
-    images.forEach(img => track.appendChild(img.cloneNode(true)));
+    images.forEach((img) => {
+      track.appendChild(img.cloneNode(true));
+    });
   }
 }
 
-// Scroll continuously unless paused
-function autoScroll() {
-  if (!isPaused) {
-    track.scrollLeft += scrollSpeed;
-    const scrollLimit = (track.scrollWidth / 3) * 2;
+// Reset scroll if near end
+function loopScroll() {
+  scrollAmount += 1;
+  track.scrollLeft += 1;
 
-    if (track.scrollLeft >= scrollLimit) {
-      track.scrollLeft = track.scrollWidth / 3;
+  const third = track.scrollWidth / 3;
+  if (track.scrollLeft >= third * 2) {
+    track.scrollLeft = third;
+  }
+}
+
+// Auto-scroll setup
+function startAutoScroll() {
+  autoScrollInterval = setInterval(() => {
+    if (!isPaused) {
+      loopScroll();
     }
-  }
-  animationFrame = requestAnimationFrame(autoScroll);
+  }, 20); // Speed of scroll
 }
 
-// Pause on interaction, resume after 3s
 function pauseAutoScroll() {
   isPaused = true;
   clearTimeout(idleTimer);
@@ -37,24 +45,25 @@ function pauseAutoScroll() {
   }, 3000);
 }
 
-// Button click handlers
-leftBtn.addEventListener('click', () => {
-  track.scrollBy({ left: -300, behavior: 'smooth' });
-  pauseAutoScroll();
-});
-rightBtn.addEventListener('click', () => {
-  track.scrollBy({ left: 300, behavior: 'smooth' });
+// Button events
+leftBtn.addEventListener("click", () => {
+  track.scrollBy({ left: -300, behavior: "smooth" });
   pauseAutoScroll();
 });
 
-// Pause on user interaction (touch, move)
-['click', 'touchstart', 'mousemove'].forEach(evt => {
-  track.addEventListener(evt, pauseAutoScroll, { passive: true });
+rightBtn.addEventListener("click", () => {
+  track.scrollBy({ left: 300, behavior: "smooth" });
+  pauseAutoScroll();
 });
 
-// Init on load
-window.addEventListener('load', () => {
+// Pause auto-scroll on interaction
+["touchstart", "click", "mousemove"].forEach((evt) => {
+  track.addEventListener(evt, pauseAutoScroll);
+});
+
+// Start everything
+window.addEventListener("load", () => {
   duplicateImages();
-  track.scrollLeft = track.scrollWidth / 3;
-  autoScroll();
+  track.scrollLeft = track.scrollWidth / 3; // Start in center
+  startAutoScroll();
 });
