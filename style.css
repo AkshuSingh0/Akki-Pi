@@ -153,7 +153,6 @@ h2 {
   font-size: 32px;
 }
 
-/* 🟠 GALLERY SECTION - updated as needed only */
 .gallery-section {
   background: #000;
   color: #fff;
@@ -170,17 +169,22 @@ h2 {
   overflow: hidden;
   max-width: 100%;
   margin: 0 auto;
-  max-height: 320px; /* ✅ Added this line to control black background */
+  max-height: 320px;
 }
 
 .gallery-track {
   display: flex;
-  overflow-x: auto;
   scroll-behavior: smooth;
   width: 100%;
   padding: 10px 0;
   -webkit-overflow-scrolling: touch;
   white-space: nowrap;
+  overflow-x: scroll;
+  scrollbar-width: none; /* Firefox */
+}
+
+.gallery-track::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
 }
 
 .gallery-track img {
@@ -192,9 +196,41 @@ h2 {
   flex-shrink: 0;
 }
 
+.gallery-controls {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
+  pointer-events: none;
+}
+
 .gallery-left,
 .gallery-right {
-  display: block !important;
+  background: rgba(255, 255, 255, 0.7);
+  border: none;
+  font-size: 40px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  display: block;
+  pointer-events: all;
+}
+
+.gallery-left {
+  margin-left: 10px;
+}
+
+.gallery-right {
+  margin-right: 10px;
+}
+
+.gallery-left:hover,
+.gallery-right:hover {
+  background: rgba(255, 255, 255, 0.9);
 }
 
 /* ✅ Responsive fixed heights */
@@ -226,43 +262,6 @@ h2 {
   .gallery-track img {
     height: 220px;
   }
-}
-
-.gallery-controls {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  transform: translateY(-50%);
-  display: flex;
-  justify-content: space-between;
-  z-index: 10;
-  pointer-events: none;
-}
-
-.gallery-left,
-.gallery-right {
-  background: rgba(255,255,255,0.7);
-  border: none;
-  font-size: 40px;
-  cursor: pointer;
-  padding: 10px;
-  border-radius: 50%;
-  display: none;
-  pointer-events: all;
-}
-
-.gallery-left {
-  margin-left: 10px;
-}
-
-.gallery-right {
-  margin-right: 10px;
-}
-
-.gallery-left:hover,
-.gallery-right:hover {
-  background: rgba(255, 255, 255, 0.9);
 }
 
 .principal-image {
