@@ -2,10 +2,10 @@ const track = document.querySelector(".gallery-track");
 const leftBtn = document.querySelector(".gallery-left");
 const rightBtn = document.querySelector(".gallery-right");
 
-let scrollSpeed = 0.5; // ✅ slower speed for Android
+let scrollSpeed = 0.5; // ✅ Slower scroll speed
 let isPaused = false;
 let idleTimer = null;
-let autoScrollInterval;
+let animationFrame;
 
 function duplicateImages() {
   const images = Array.from(track.children);
@@ -17,16 +17,17 @@ function duplicateImages() {
   }
 }
 
-function startAutoScroll() {
-  autoScrollInterval = setInterval(() => {
-    if (!isPaused) {
-      track.scrollLeft += scrollSpeed;
-      const third = track.scrollWidth / 3;
-      if (track.scrollLeft >= third * 2) {
-        track.scrollLeft = third;
-      }
+function loopScroll() {
+  if (!isPaused) {
+    track.scrollLeft += scrollSpeed;
+
+    const total = track.scrollWidth / 3;
+    if (track.scrollLeft >= total * 2) {
+      track.scrollLeft = total;
     }
-  }, 20); // ✅ smooth but slow interval
+  }
+
+  animationFrame = requestAnimationFrame(loopScroll);
 }
 
 function pauseAutoScroll() {
@@ -38,12 +39,12 @@ function pauseAutoScroll() {
 }
 
 leftBtn.addEventListener("click", () => {
-  track.scrollBy({ left: -300, behavior: "smooth" });
+  track.scrollBy({ left: -400, behavior: "smooth" });
   pauseAutoScroll();
 });
 
 rightBtn.addEventListener("click", () => {
-  track.scrollBy({ left: 300, behavior: "smooth" });
+  track.scrollBy({ left: 400, behavior: "smooth" });
   pauseAutoScroll();
 });
 
@@ -53,7 +54,11 @@ rightBtn.addEventListener("click", () => {
 
 window.addEventListener("load", () => {
   duplicateImages();
-  const third = track.scrollWidth / 3;
-  track.scrollLeft = third;
-  startAutoScroll(); // ✅ setInterval more reliable on iOS
+
+  // ✅ Wait for DOM to layout before adjusting scroll position
+  setTimeout(() => {
+    const third = track.scrollWidth / 3;
+    track.scrollLeft = third;
+    loopScroll();
+  }, 50);
 });
