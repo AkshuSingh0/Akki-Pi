@@ -174,13 +174,11 @@ h2 {
 
 .gallery-track {
   display: flex;
-  scroll-behavior: smooth;
+  overflow-x: hidden;
+  scroll-behavior: auto;
   width: 100%;
   padding: 10px 0;
-  -webkit-overflow-scrolling: touch;
   white-space: nowrap;
-  overflow-x: scroll;
-  scrollbar-width: none; /* Firefox */
 }
 
 .gallery-track::-webkit-scrollbar {
