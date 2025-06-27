@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function startAutoScroll() {
-    clearInterval(autoScrollInterval); // clear previous if any
+    clearInterval(autoScrollInterval);
     autoScrollInterval = setInterval(scrollGallery, 20);
     isPaused = false;
     hideControls();
@@ -29,9 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function resetIdleTimer() {
     clearTimeout(idleTimer);
-    idleTimer = setTimeout(() => {
-      startAutoScroll();
-    }, 5000);
+    idleTimer = setTimeout(() => startAutoScroll(), 5000);
   }
 
   function showControls() {
@@ -44,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
     rightBtn.style.display = 'none';
   }
 
-  // Add touchstart to handle phones/tablets
   track.addEventListener('click', stopAutoScroll);
   track.addEventListener('touchstart', stopAutoScroll);
 
@@ -58,8 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
     stopAutoScroll();
   });
 
-  // Start auto-scroll after short delay to ensure everything is rendered
-  setTimeout(() => {
-    startAutoScroll();
-  }, 300);
+  // small delay to ensure DOM readiness
+  setTimeout(() => startAutoScroll(), 300);
 });
