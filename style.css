@@ -169,7 +169,7 @@ h2 {
   overflow: hidden;
   max-width: 100%;
   margin: 0 auto;
-  max-height: 320px;
+  max-height: 400px;
 }
 
 .gallery-track {
@@ -186,7 +186,7 @@ h2 {
 }
 
 .gallery-track img {
-  height: 220px;
+  height: 300px;
   max-width: 100%;
   object-fit: contain;
   margin-right: 12px;
