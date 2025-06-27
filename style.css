@@ -163,7 +163,8 @@ h2 {
 .gallery-track {
   display: flex;
   width: max-content;
-  animation: scrollGallery 40s linear infinite;
+  overflow-x: auto;
+  scroll-behavior: smooth;
 }
 
 .gallery-track img {
@@ -171,11 +172,6 @@ h2 {
   width: auto;
   margin-right: 12px;
   border-radius: 10px;
-}
-
-@keyframes scrollGallery {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
 }
 
 .principal-image {
