@@ -1,60 +1,75 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const track = document.querySelector('.gallery-track');
-  const leftBtn = document.querySelector('.gallery-left');
-  const rightBtn = document.querySelector('.gallery-right');
+const track = document.querySelector('.gallery-track');
+const leftBtn = document.querySelector('.gallery-left');
+const rightBtn = document.querySelector('.gallery-right');
 
-  let autoScrollInterval;
-  let isPaused = false;
-  let idleTimer;
+let scrollAmount = 0;
+let isPaused = false;
+let autoScrollInterval;
+let idleTimer;
 
-  function scrollGallery() {
-    if (!isPaused && track) {
-      track.scrollBy({ left: 2, behavior: 'smooth' });
+// Duplicate content to create looping illusion
+function duplicateContent() {
+  const images = track.querySelectorAll('img');
+  images.forEach(img => {
+    const clone = img.cloneNode(true);
+    track.appendChild(clone);
+  });
+}
+
+function scrollGallery() {
+  if (!isPaused) {
+    scrollAmount += 1;
+    track.scrollLeft += 1;
+
+    if (scrollAmount >= track.scrollWidth / 2) {
+      track.scrollLeft = 0;
+      scrollAmount = 0;
     }
   }
+}
 
-  function startAutoScroll() {
-    clearInterval(autoScrollInterval);
-    autoScrollInterval = setInterval(scrollGallery, 20);
+function startAutoScroll() {
+  autoScrollInterval = setInterval(scrollGallery, 20);
+  isPaused = false;
+  hideControls();
+}
+
+function stopAutoScroll() {
+  clearInterval(autoScrollInterval);
+  isPaused = true;
+  showControls();
+  resetIdleTimer();
+}
+
+function resetIdleTimer() {
+  clearTimeout(idleTimer);
+  idleTimer = setTimeout(() => {
     isPaused = false;
-    hideControls();
-  }
+    startAutoScroll();
+  }, 5000);
+}
 
-  function stopAutoScroll() {
-    clearInterval(autoScrollInterval);
-    isPaused = true;
-    showControls();
-    resetIdleTimer();
-  }
+function showControls() {
+  leftBtn.style.display = 'block';
+  rightBtn.style.display = 'block';
+}
 
-  function resetIdleTimer() {
-    clearTimeout(idleTimer);
-    idleTimer = setTimeout(() => startAutoScroll(), 5000);
-  }
+function hideControls() {
+  leftBtn.style.display = 'none';
+  rightBtn.style.display = 'none';
+}
 
-  function showControls() {
-    leftBtn.style.display = 'block';
-    rightBtn.style.display = 'block';
-  }
-
-  function hideControls() {
-    leftBtn.style.display = 'none';
-    rightBtn.style.display = 'none';
-  }
-
-  track.addEventListener('click', stopAutoScroll);
-  track.addEventListener('touchstart', stopAutoScroll);
-
-  leftBtn.addEventListener('click', () => {
-    track.scrollBy({ left: -350, behavior: 'smooth' });
-    stopAutoScroll();
-  });
-
-  rightBtn.addEventListener('click', () => {
-    track.scrollBy({ left: 350, behavior: 'smooth' });
-    stopAutoScroll();
-  });
-
-  // small delay to ensure DOM readiness
-  setTimeout(() => startAutoScroll(), 300);
+// Event listeners
+track.addEventListener('click', stopAutoScroll);
+leftBtn.addEventListener('click', () => {
+  track.scrollBy({ left: -350, behavior: 'smooth' });
+  stopAutoScroll();
 });
+rightBtn.addEventListener('click', () => {
+  track.scrollBy({ left: 350, behavior: 'smooth' });
+  stopAutoScroll();
+});
+
+// ✅ Initialize
+duplicateContent();
+startAutoScroll();
