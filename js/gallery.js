@@ -2,37 +2,34 @@ const track = document.querySelector(".gallery-track");
 const leftBtn = document.querySelector(".gallery-left");
 const rightBtn = document.querySelector(".gallery-right");
 
+let scrollSpeed = 1;
 let isPaused = false;
 let idleTimer = null;
 let animationFrame;
 
-// Step 1: Duplicate images to support seamless infinite scroll
 function duplicateImages() {
-  const originalImages = Array.from(track.children);
+  const images = Array.from(track.children);
   for (let i = 0; i < 2; i++) {
-    originalImages.forEach((img) => {
+    images.forEach(img => {
       const clone = img.cloneNode(true);
       track.appendChild(clone);
     });
   }
 }
 
-// Step 2: Auto-scroll function
-function autoScroll() {
+function loopScroll() {
   if (!isPaused) {
-    track.scrollLeft += 1;
-    const scrollWidth = track.scrollWidth;
-    const third = scrollWidth / 3;
+    track.scrollLeft += scrollSpeed;
 
-    // Loop: If scroll reaches end of 2nd copy, jump back to start of 2nd
+    const third = track.scrollWidth / 3;
     if (track.scrollLeft >= third * 2) {
       track.scrollLeft = third;
     }
   }
-  animationFrame = requestAnimationFrame(autoScroll);
+
+  animationFrame = requestAnimationFrame(loopScroll);
 }
 
-// Step 3: Pause/resume logic
 function pauseAutoScroll() {
   isPaused = true;
   clearTimeout(idleTimer);
@@ -41,25 +38,23 @@ function pauseAutoScroll() {
   }, 3000);
 }
 
-// Step 4: Button Events
 leftBtn.addEventListener("click", () => {
   track.scrollBy({ left: -300, behavior: "smooth" });
   pauseAutoScroll();
 });
+
 rightBtn.addEventListener("click", () => {
   track.scrollBy({ left: 300, behavior: "smooth" });
   pauseAutoScroll();
 });
 
-// Step 5: Pause when user interacts (touch or hover or click)
-["touchstart", "mouseenter", "click"].forEach((evt) => {
-  track.addEventListener(evt, pauseAutoScroll);
+["click", "touchstart", "mousemove"].forEach(event => {
+  track.addEventListener(event, pauseAutoScroll);
 });
 
-// Step 6: On Load
 window.addEventListener("load", () => {
   duplicateImages();
   const third = track.scrollWidth / 3;
   track.scrollLeft = third;
-  autoScroll();
+  loopScroll();
 });
