@@ -2,58 +2,57 @@ const track = document.querySelector(".gallery-track");
 const leftBtn = document.querySelector(".gallery-left");
 const rightBtn = document.querySelector(".gallery-right");
 
-let scrollSpeed = 0.5;
+let scrollSpeed = 1;
 let isPaused = false;
 let idleTimer = null;
-let animationFrame;
+let animId = null;
 
-// Duplicate images for seamless infinite loop
+// Clone images twice to allow smooth infinite loop
 function duplicateImages() {
-  const images = Array.from(track.children);
+  const imgs = Array.from(track.children);
   for (let i = 0; i < 2; i++) {
-    images.forEach(img => track.appendChild(img.cloneNode(true)));
+    imgs.forEach(img => track.appendChild(img.cloneNode(true)));
   }
 }
 
-// iOS autoplay kickstart
-function kickstartIOS() {
-  track.scrollLeft += 1;
-  track.scrollLeft -= 1;
-}
-
-// Loop scroll function
+// Loop scroll using requestAnimationFrame
 function loopScroll() {
   if (!isPaused) {
     track.scrollLeft += scrollSpeed;
     const third = track.scrollWidth / 3;
-    if (track.scrollLeft >= third * 2) track.scrollLeft = third;
+    if (track.scrollLeft >= third * 2) {
+      track.scrollLeft = third;
+    }
   }
-  animationFrame = requestAnimationFrame(loopScroll);
+  animId = requestAnimationFrame(loopScroll);
 }
 
-// Pause on interaction
+// Pause scroll, resume after 3 seconds
 function pauseAutoScroll() {
   isPaused = true;
   clearTimeout(idleTimer);
   idleTimer = setTimeout(() => { isPaused = false; }, 3000);
 }
 
-// Button handlers
-leftBtn.onclick = () => { track.scrollBy({ left: -400, behavior: "smooth" }); pauseAutoScroll(); };
-rightBtn.onclick = () => { track.scrollBy({ left: 400, behavior: "smooth" }); pauseAutoScroll(); };
+// Button interactions
+leftBtn.addEventListener("click", () => {
+  pauseAutoScroll();
+  track.scrollBy({ left: -300, behavior: "smooth" });
+});
+rightBtn.addEventListener("click", () => {
+  pauseAutoScroll();
+  track.scrollBy({ left: 300, behavior: "smooth" });
+});
 
-// Interaction events
-["touchstart", "mousedown", "mousemove"].forEach(evt => 
-  track.addEventListener(evt, pauseAutoScroll, { passive: true })
-);
+// Capture touch/mouse events for pause
+["touchstart", "pointerdown", "mousedown"].forEach(evt => {
+  track.addEventListener(evt, pauseAutoScroll, { passive: true });
+});
 
-// Initialize
+// Initialize on page load
 window.addEventListener("load", () => {
   duplicateImages();
-  setTimeout(() => {
-    const third = track.scrollWidth / 3;
-    track.scrollLeft = third;
-    kickstartIOS();       // necessary iOS trick
-    loopScroll();
-  }, 100);
+  const third = track.scrollWidth / 3;
+  track.scrollLeft = third;
+  loopScroll();
 });
