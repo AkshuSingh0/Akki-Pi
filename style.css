@@ -312,3 +312,13 @@ footer {
     padding-right: 40px;
   }
 }
+
+.gallery-track {
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+}
+
+.gallery-track img {
+  max-width: 100%;
+  height: auto;
+}
