@@ -2,7 +2,7 @@ const track = document.querySelector(".gallery-track");
 const leftBtn = document.querySelector(".gallery-left");
 const rightBtn = document.querySelector(".gallery-right");
 
-let scrollSpeed = 0.5; // ✅ Slower scroll speed
+let scrollSpeed = 0.5;
 let isPaused = false;
 let idleTimer = null;
 let animationFrame;
@@ -17,13 +17,26 @@ function duplicateImages() {
   }
 }
 
+// ✅ This is required for Safari/iOS to keep it active
+function keepActiveHack() {
+  const dummy = document.createElement('div');
+  dummy.style.height = '1px';
+  dummy.style.width = '1px';
+  dummy.style.position = 'absolute';
+  dummy.style.left = '0';
+  dummy.style.top = '0';
+  dummy.style.opacity = '0';
+  track.appendChild(dummy);
+  dummy.scrollIntoView(); // triggers scroll interaction
+}
+
 function loopScroll() {
   if (!isPaused) {
     track.scrollLeft += scrollSpeed;
 
-    const total = track.scrollWidth / 3;
-    if (track.scrollLeft >= total * 2) {
-      track.scrollLeft = total;
+    const third = track.scrollWidth / 3;
+    if (track.scrollLeft >= third * 2) {
+      track.scrollLeft = third;
     }
   }
 
@@ -49,16 +62,17 @@ rightBtn.addEventListener("click", () => {
 });
 
 ["click", "touchstart", "mousemove"].forEach((event) => {
-  track.addEventListener(event, pauseAutoScroll);
+  track.addEventListener(event, pauseAutoScroll, { passive: true });
 });
 
 window.addEventListener("load", () => {
   duplicateImages();
 
-  // ✅ Wait for DOM to layout before adjusting scroll position
+  // ✅ Wait for layout + apply Safari fix
   setTimeout(() => {
     const third = track.scrollWidth / 3;
     track.scrollLeft = third;
+    keepActiveHack();
     loopScroll();
-  }, 50);
+  }, 100);
 });
