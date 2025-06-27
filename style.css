@@ -241,6 +241,7 @@ h2 {
 
   .gallery-track img {
     height: 420px;
+    object-fit: cover; 
   }
 }
 
