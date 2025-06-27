@@ -246,11 +246,11 @@ h2 {
 
 @media (min-width: 769px) and (max-width: 1024px) {
   .gallery-container {
-    max-height: 320px;
+    max-height: 420px;
   }
 
   .gallery-track img {
-    height: 280px;
+    height: 360px;
   }
 }
 
