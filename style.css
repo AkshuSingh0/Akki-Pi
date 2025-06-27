@@ -175,8 +175,9 @@ h2 {
 }
 
 .gallery-track img {
-  height: 350px;
-  width: auto;
+  height: 250px; /* reduced from 350px */
+  max-width: 100%;
+  object-fit: contain;
   margin-right: 12px;
   border-radius: 10px;
   flex-shrink: 0;
