@@ -241,7 +241,8 @@ h2 {
 
   .gallery-track img {
     height: 420px;
-    object-fit: contain; 
+    max-width: 100%;
+    object-fit: fill; /* ✅ Forces all images to stretch and fill space */
   }
 }
 
