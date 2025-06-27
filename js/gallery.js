@@ -2,12 +2,12 @@ const track = document.querySelector('.gallery-track');
 const leftBtn = document.querySelector('.gallery-left');
 const rightBtn = document.querySelector('.gallery-right');
 
-let scrollSpeed = 1; // Adjust for faster scroll
+let scrollSpeed = 1.5;
 let isPaused = false;
 let idleTimer = null;
 let animationFrame;
 
-// Clone all images 2 more times for infinite effect
+// Duplicate gallery images for seamless looping
 function duplicateImages() {
   const images = Array.from(track.children);
   for (let i = 0; i < 2; i++) {
@@ -15,49 +15,46 @@ function duplicateImages() {
   }
 }
 
-// Auto-scroll using requestAnimationFrame
+// Scroll continuously unless paused
 function autoScroll() {
   if (!isPaused) {
     track.scrollLeft += scrollSpeed;
+    const scrollLimit = (track.scrollWidth / 3) * 2;
 
-    // Looping logic: if scroll passes original image set, reset
-    if (track.scrollLeft >= track.scrollWidth / 3 * 2) {
+    if (track.scrollLeft >= scrollLimit) {
       track.scrollLeft = track.scrollWidth / 3;
     }
   }
-
   animationFrame = requestAnimationFrame(autoScroll);
 }
 
-// Pause scroll on user interaction
+// Pause on interaction, resume after 3s
 function pauseAutoScroll() {
   isPaused = true;
   clearTimeout(idleTimer);
-
   idleTimer = setTimeout(() => {
     isPaused = false;
   }, 3000);
 }
 
-// Button Events
+// Button click handlers
 leftBtn.addEventListener('click', () => {
   track.scrollBy({ left: -300, behavior: 'smooth' });
   pauseAutoScroll();
 });
-
 rightBtn.addEventListener('click', () => {
   track.scrollBy({ left: 300, behavior: 'smooth' });
   pauseAutoScroll();
 });
 
-// Pause on manual touch/click/hover
+// Pause on user interaction (touch, move)
 ['click', 'touchstart', 'mousemove'].forEach(evt => {
-  track.addEventListener(evt, pauseAutoScroll);
+  track.addEventListener(evt, pauseAutoScroll, { passive: true });
 });
 
-// Initialize
+// Init on load
 window.addEventListener('load', () => {
   duplicateImages();
-  track.scrollLeft = track.scrollWidth / 3; // Start from middle
+  track.scrollLeft = track.scrollWidth / 3;
   autoScroll();
 });
