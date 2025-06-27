@@ -2,7 +2,7 @@ const track = document.querySelector(".gallery-track");
 const leftBtn = document.querySelector(".gallery-left");
 const rightBtn = document.querySelector(".gallery-right");
 
-let scrollSpeed = 1;
+let scrollSpeed = 0.3;
 let isPaused = false;
 let idleTimer = null;
 let animationFrame;
