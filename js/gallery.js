@@ -2,81 +2,62 @@ const track = document.querySelector('.gallery-track');
 const leftBtn = document.querySelector('.gallery-left');
 const rightBtn = document.querySelector('.gallery-right');
 
-let scrollAmount = 0;
+let scrollSpeed = 1; // Adjust for faster scroll
 let isPaused = false;
-let autoScrollInterval;
-let idleTimer;
-const scrollStep = 1;
-const scrollDelay = 25; // Faster scroll
-const resumeAfter = 3000;
+let idleTimer = null;
+let animationFrame;
 
-// Duplicate content once
-function duplicateContent() {
+// Clone all images 2 more times for infinite effect
+function duplicateImages() {
   const images = Array.from(track.children);
-  images.forEach(img => {
-    const clone = img.cloneNode(true);
-    track.appendChild(clone);
-  });
-}
-
-function scrollGallery() {
-  if (!isPaused) {
-    track.scrollLeft += scrollStep;
-
-    // Loop back if reached halfway (original length)
-    if (track.scrollLeft >= track.scrollWidth / 2) {
-      track.scrollLeft = 0;
-    }
+  for (let i = 0; i < 2; i++) {
+    images.forEach(img => track.appendChild(img.cloneNode(true)));
   }
 }
 
-function startAutoScroll() {
-  clearInterval(autoScrollInterval);
-  autoScrollInterval = setInterval(scrollGallery, scrollDelay);
-  isPaused = false;
-  hideControls();
+// Auto-scroll using requestAnimationFrame
+function autoScroll() {
+  if (!isPaused) {
+    track.scrollLeft += scrollSpeed;
+
+    // Looping logic: if scroll passes original image set, reset
+    if (track.scrollLeft >= track.scrollWidth / 3 * 2) {
+      track.scrollLeft = track.scrollWidth / 3;
+    }
+  }
+
+  animationFrame = requestAnimationFrame(autoScroll);
 }
 
-function stopAutoScroll() {
-  clearInterval(autoScrollInterval);
+// Pause scroll on user interaction
+function pauseAutoScroll() {
   isPaused = true;
-  showControls();
-  resetIdleTimer();
-}
-
-function resetIdleTimer() {
   clearTimeout(idleTimer);
+
   idleTimer = setTimeout(() => {
     isPaused = false;
-    startAutoScroll();
-  }, resumeAfter);
+  }, 3000);
 }
 
-function showControls() {
-  leftBtn.style.display = 'block';
-  rightBtn.style.display = 'block';
-}
-
-function hideControls() {
-  leftBtn.style.display = 'none';
-  rightBtn.style.display = 'none';
-}
-
-// Button scroll
+// Button Events
 leftBtn.addEventListener('click', () => {
-  track.scrollBy({ left: -350, behavior: 'smooth' });
-  stopAutoScroll();
+  track.scrollBy({ left: -300, behavior: 'smooth' });
+  pauseAutoScroll();
 });
 
 rightBtn.addEventListener('click', () => {
-  track.scrollBy({ left: 350, behavior: 'smooth' });
-  stopAutoScroll();
+  track.scrollBy({ left: 300, behavior: 'smooth' });
+  pauseAutoScroll();
 });
 
-// Stop auto-scroll on user interaction
-track.addEventListener('click', stopAutoScroll);
-track.addEventListener('touchstart', stopAutoScroll);
+// Pause on manual touch/click/hover
+['click', 'touchstart', 'mousemove'].forEach(evt => {
+  track.addEventListener(evt, pauseAutoScroll);
+});
 
-// ✅ Initialize
-duplicateContent();
-startAutoScroll();
+// Initialize
+window.addEventListener('load', () => {
+  duplicateImages();
+  track.scrollLeft = track.scrollWidth / 3; // Start from middle
+  autoScroll();
+});
