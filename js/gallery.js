@@ -2,42 +2,54 @@ const track = document.querySelector('.gallery-track');
 const leftBtn = document.querySelector('.gallery-left');
 const rightBtn = document.querySelector('.gallery-right');
 
-let scrollSpeed = 1;      // px per step
+let scrollAmount = 0;
+let isPaused = false;
 let autoScrollInterval;
 let idleTimer;
-let isPaused = false;
+const scrollStep = 1;
+const scrollDelay = 25; // Faster scroll
+const resumeAfter = 3000;
 
-// Duplicate to enable infinite loop
+// Duplicate content once
 function duplicateContent() {
-  const imgs = Array.from(track.querySelectorAll('img'));
-  imgs.forEach(img => track.append(img.cloneNode()));
+  const images = Array.from(track.children);
+  images.forEach(img => {
+    const clone = img.cloneNode(true);
+    track.appendChild(clone);
+  });
 }
 
-// Scroll function with seamless loop check
 function scrollGallery() {
-  if (isPaused) return;
+  if (!isPaused) {
+    track.scrollLeft += scrollStep;
 
-  track.scrollLeft += scrollSpeed;
-  if (track.scrollLeft >= track.scrollWidth / 2) {
-    track.scrollLeft = 0;
+    // Loop back if reached halfway (original length)
+    if (track.scrollLeft >= track.scrollWidth / 2) {
+      track.scrollLeft = 0;
+    }
   }
 }
 
-// Start auto-scrolling
 function startAutoScroll() {
   clearInterval(autoScrollInterval);
-  autoScrollInterval = setInterval(scrollGallery, 20);
+  autoScrollInterval = setInterval(scrollGallery, scrollDelay);
   isPaused = false;
   hideControls();
 }
 
-// Stop scrolling + show buttons + begin idle timeout
 function stopAutoScroll() {
   clearInterval(autoScrollInterval);
   isPaused = true;
   showControls();
+  resetIdleTimer();
+}
+
+function resetIdleTimer() {
   clearTimeout(idleTimer);
-  idleTimer = setTimeout(startAutoScroll, 3000); // 3s resume
+  idleTimer = setTimeout(() => {
+    isPaused = false;
+    startAutoScroll();
+  }, resumeAfter);
 }
 
 function showControls() {
@@ -50,21 +62,21 @@ function hideControls() {
   rightBtn.style.display = 'none';
 }
 
-// Button controls
+// Button scroll
 leftBtn.addEventListener('click', () => {
+  track.scrollBy({ left: -350, behavior: 'smooth' });
   stopAutoScroll();
-  track.scrollBy({ left: -track.clientWidth * 0.8, behavior: 'smooth' });
 });
 
 rightBtn.addEventListener('click', () => {
+  track.scrollBy({ left: 350, behavior: 'smooth' });
   stopAutoScroll();
-  track.scrollBy({ left: track.clientWidth * 0.8, behavior: 'smooth' });
 });
 
-// Pause on track click or touch
-track.addEventListener('mousedown', stopAutoScroll);
+// Stop auto-scroll on user interaction
+track.addEventListener('click', stopAutoScroll);
 track.addEventListener('touchstart', stopAutoScroll);
 
-// Init
+// ✅ Initialize
 duplicateContent();
 startAutoScroll();
