@@ -192,6 +192,11 @@ h2 {
   flex-shrink: 0;
 }
 
+.gallery-left,
+.gallery-right {
+  display: block !important;
+}
+
 /* ✅ Responsive fixed heights */
 @media (max-width: 768px) {
   .gallery-container {
