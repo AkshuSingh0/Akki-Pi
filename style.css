@@ -366,4 +366,11 @@ footer {
 * {
   touch-action: manipulation;
 }
-  
+
+.peach-box {
+  background-color: #ffe5b4;   /* Light peach */
+  border: 2px solid red;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+}
