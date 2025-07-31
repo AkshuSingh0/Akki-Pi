@@ -374,3 +374,29 @@ footer {
   padding: 20px;
   margin: 20px 0;
 }
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  cursor: pointer;
+}
+
+.whatsapp-float img {
+  height: 55px;
+  width: 55px;
+}
+
+.top-float {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 999;
+  cursor: pointer;
+}
+
+.top-float img {
+  height: 50px;
+  width: 50px;
+}
