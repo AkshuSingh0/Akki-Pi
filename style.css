@@ -401,10 +401,27 @@ footer {
   width: 50px;
 }
 
+/* ---------- additions/overrides ---------- */
+
+/* WhatsApp CTA (in header) */
+.header-cta { /* if you want a class-based style instead of inline */ }
+.hero-text a.cta { background:#25D366; color:#fff; padding:10px 18px; border-radius:8px; text-decoration:none; }
+
+/* Copyright strip */
 .copyright-strip {
-  background-color: #000;   /* Black background */
-  color: #fff;             /* White text */
+  background-color: #000; /* black */
+  color: #fff;            /* white text */
   text-align: center;
   padding: 8px 0;
   font-size: 14px;
+  margin-top: 0;
 }
+
+/* Footer tagline readability on small screens */
+footer p { margin: 8px 0; }
+
+/* Slight spacing fix for main content */
+main { padding-bottom: 10px; }
+
+/* ensure floating icons stay above copyright */
+.whatsapp-float, .top-float { z-index: 9999; }
