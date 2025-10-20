@@ -400,3 +400,11 @@ footer {
   height: 50px;
   width: 50px;
 }
+
+.copyright-strip {
+  background-color: #000;   /* Black background */
+  color: #fff;             /* White text */
+  text-align: center;
+  padding: 8px 0;
+  font-size: 14px;
+}
