@@ -164,6 +164,36 @@ h2 {
   align-items: center;
 }
 
+/* Photon gallery specific styles (background image) */
+.photon-gallery {
+  background-image: url('tree.jpg'); /* <-- save the background as tree.jpg */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+  padding: 28px 0;
+}
+
+/* subtle overlay for readability */
+.photon-gallery .gallery-container {
+  background: rgba(255,255,255,0.04);
+  padding: 12px 0;
+  border-radius: 6px;
+}
+
+/* sizing to match your existing gallery */
+.photon-gallery .gallery-track img {
+  height: 380px;
+}
+
+@media (max-width: 768px) {
+  .photon-gallery .gallery-track img {
+    height: 420px;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
 .gallery-container {
   position: relative;
   overflow: hidden;
