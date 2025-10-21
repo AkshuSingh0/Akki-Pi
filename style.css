@@ -166,7 +166,7 @@ h2 {
 
 /* Photon gallery specific styles (background image) */
 .photon-gallery {
-  background-image: url('tree.jpg'); /* <-- save the background as tree.jpg */
+  background-image: url('tree.JPG'); /* <-- save the background as tree.jpg */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
