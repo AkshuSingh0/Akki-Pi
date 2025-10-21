@@ -286,9 +286,19 @@ h2 {
   padding: 15px;
 }
 
+/* unified icon sizing + hover effect (YouTube will match) */
 .social-media img {
-  height: 40px;
-  margin: 0 10px;
+  width: 40px;            /* uniform width */
+  height: 40px;           /* uniform height */
+  margin: 0 8px;
+  object-fit: contain;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  vertical-align: middle;
+}
+
+.social-media img:hover {
+  transform: translateY(-3px) scale(1.05);
+  opacity: 0.95;
 }
 
 .footer-logo {
