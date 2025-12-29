@@ -23,9 +23,25 @@
   <link rel="icon" href="wblogo.png" type="image/png" />
 </head>
 
+<!-- ===== Hamburger Menu Overlay ===== -->
+<div id="menuOverlay" class="menu-overlay">
+  <div class="menu-panel">
+    <span class="close-menu" onclick="closeMenu()">✖</span>
+
+    <h2>📢 Admissions Open!</h2>
+    <hr>
+
+    <a href="#about-school" onclick="closeMenu()">🏫 About School</a>
+    <a href="#facilities" onclick="closeMenu()">🏀 Facilities</a>
+    <a href="#contact" onclick="closeMenu()">📞 Contact</a>
+    <a href="#common-queries" onclick="closeMenu()">❓ Common Queries</a>
+  </div>
+</div>
+  
 <body>
   <header>
     <div class="top-bar">
+  <div class="hamburger" onclick="openMenu()">☰</div>
       <div class="contact-info">
         <div>📞 +91 8267090472</div>
         <div>✉️ photonschoolktl@gmail.com</div>
@@ -103,7 +119,7 @@
       <p>Mrs. Renu is a former K.V.S teacher with over 25 years of teaching and administrative experience across India 🇮🇳 . Under her leadership, Photon is shaping young learners into confident, future-ready global citizens.</p>
     </section>
 
-    <section class="mission">
+    <section class="mission" id="about-school">
       <div class="peach-box">
         <h2>Photon International School, Kaithal</h2>
         <p><strong>Photon International School</strong> is Kaithal’s premium ICSE based school. With experienced teachers, a safe and nurturing campus, and a strong focus on overall development — including skills, confidence, and character — Photon is the trusted choice for parents seeking a future-ready education.</p>
@@ -115,7 +131,7 @@
       </div>
     </section>
 
-    <section class="queries">
+    <section class="queries" id="common-queries">
   <h2>Common Queries</h2>
 
   <p style="margin-bottom:20px;">
@@ -154,7 +170,7 @@
   We conduct regular safety drills and awareness programs so students feel secure and prepared.  
   Classrooms are spacious, well-ventilated, smart-board equipped, and we provide <strong>RO drinking water</strong> to keep every child healthy and comfortable.</p>
 
-  <h3><strong>7. What facilities do you offer?</strong></h3>
+  <h3 id="facilities"><strong>7. What facilities do you offer?</strong></h3>
   <p>Photon provides <strong>modern facilities</strong> to support both academic and extracurricular growth:  
   digital smart classrooms, science & computer labs, RO water, CCTV, and safe transport.  
   We also prioritise <strong>sports, dance, and creative arts</strong> for true holistic development.</p>
@@ -195,7 +211,7 @@
 </section>
   </main>
 
-    <footer>
+    <footer id="contact">
     <div class="social-media">
       <a href="https://www.facebook.com/profile.php?id=61559313624796" target="_blank" aria-label="Facebook">
         <img src="fb-icon.png" alt="Facebook" />
