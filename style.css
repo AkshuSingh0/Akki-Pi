@@ -526,3 +526,6 @@ main { padding-bottom: 10px; }
 .menu-panel a:hover {
   color: #ff4500;
 }
+html {
+  scroll-behavior: smooth;
+}
