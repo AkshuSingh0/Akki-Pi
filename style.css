@@ -549,15 +549,16 @@ section {
   box-shadow: 0 2px 6px rgba(0,0,0,0.25);
 }
 /* ===== iPad / Tablet header fix ===== */
+/* ===== iPad header fine-tuning ===== */
 @media (min-width: 601px) and (max-width: 1024px) {
   .sticky-header {
-    padding: 0 16px;
+    padding-right: 32px;   /* ✅ more right space */
   }
 
   .header-contact {
-    font-size: 12px;
-    max-width: none;     /* ✅ allow full email */
-    overflow: visible;  /* ✅ prevent cutting */
+    margin-right: 14px;    /* ✅ pull inward */
+    font-size: 13px;
+    white-space: nowrap;
   }
 }
 
@@ -623,17 +624,16 @@ body {
 }
 
   @media (max-width: 480px) {
-  .header-contact {
-    text-align: right;
-    font-size: 11px;
-    line-height: 1.25;
-    max-width: 150px;
+  .header-title-box {
+    font-size: 13px;
+    padding: 5px 12px;
+    margin-left: -10px;   /* ✅ shifts title slightly left */
   }
 
-  .header-contact div {
-    white-space: normal;     /* ✅ allows full email */
-    word-break: break-all;   /* ✅ prevents chopping */
+  .header-contact {
+    display: none;        /* ✅ hide contact on phone */
   }
+}
 
     @media (min-width: 768px) and (max-width: 1024px) {
   .header-contact {
