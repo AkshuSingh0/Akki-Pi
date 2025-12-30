@@ -615,14 +615,6 @@ body {
 .header-title-box {
   gap: 6px;
 }
-
-/* ===== Phones: hide contact to avoid chopping ===== */
-@media (max-width: 600px) {
-  .header-contact {
-    display: none;   /* ✅ hides number & gmail on phones */
-  }
-}
-
   @media (max-width: 480px) {
   .header-title-box {
     font-size: 13px;
@@ -635,13 +627,6 @@ body {
   }
 }
 
-    @media (min-width: 768px) and (max-width: 1024px) {
-  .header-contact {
-    font-size: 12px;
-    max-width: 200px;
-    text-align: right;
-  }
-      
       /* ===== Offset anchor scroll for sticky header ===== */
 section {
   scroll-margin-top: 70px;
