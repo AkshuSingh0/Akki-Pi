@@ -552,13 +552,16 @@ section {
 /* ===== iPad header fine-tuning ===== */
 @media (min-width: 601px) and (max-width: 1024px) {
   .sticky-header {
-    padding-right: 32px;   /* ✅ more right space */
-  }
+  padding: 0 16px;   /* 👈 matches body spacing feel */
+}
 
   .header-contact {
-    margin-right: 14px;    /* ✅ pull inward */
-    font-size: 13px;
-    white-space: nowrap;
+  margin-right: 12px;     /* 👈 pulls content inward */
+  padding-left: 6px;      /* 👈 breathing space */
+}
+  @media (min-width: 601px) and (max-width: 1024px) {
+  .header-contact {
+    margin-right: 22px;   /* 👈 THIS stops last letters cutting */
   }
 }
 
@@ -617,10 +620,14 @@ body {
 }
   @media (max-width: 480px) {
   .header-title-box {
-    font-size: 13px;
-    padding: 5px 12px;
-    margin-left: -10px;   /* ✅ shifts title slightly left */
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 14px;
+    padding-right: 14px;
+    max-width: calc(100% - 56px); /* 👈 leaves space for hamburger */
+    box-sizing: border-box;
   }
+}
 
   .header-contact {
     display: none;        /* ✅ hide contact on phone */
@@ -632,3 +639,4 @@ section {
   scroll-margin-top: 70px;
 }
 }
+
