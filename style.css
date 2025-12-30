@@ -529,3 +529,37 @@ main { padding-bottom: 10px; }
 html {
   scroll-behavior: smooth;
 }
+/* ===== Sticky Header ===== */
+.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  background: #1e7f43;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  z-index: 9999;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.header-title {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.header-contact {
+  font-size: 12px;
+  text-align: right;
+}
+
+.header-contact div {
+  line-height: 1.2;
+}
+body {
+  padding-top: 60px;
+}
