@@ -583,6 +583,15 @@ body {
 }
 
 .header-logo {
-  height: 26px;
+  height: 22px;
+  max-height: 22px;
   width: auto;
+  object-fit: contain;
+}
+.header-title-box img {
+  display: block;
+  max-width: 22px;
+}
+.header-title-box {
+  gap: 6px;
 }
